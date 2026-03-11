@@ -1,0 +1,83 @@
+{
+    "name": "jsdoc-auto-import",
+    "displayName": "JSDoc Auto Import",
+    "description": "Automates JSDoc @import type management using modern TS 5.5+ syntax",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.107.0"
+    },
+    "categories": [
+        "Programming Languages",
+        "Other"
+    ],
+    "activationEvents": [
+        "onLanguage:javascript",
+        "onLanguage:javascriptreact"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "jsdoc-auto-import.organizeImports",
+                "title": "[JSDoc Import] Organize JSDoc Imports"
+            },
+            {
+                "command": "jsdoc-auto-import.convertAllImports",
+                "title": "[JSDoc Import] Convert All Inline Imports"
+            }
+        ],
+        "configuration": {
+            "title": "JSDoc Auto Import",
+            "properties": {
+                "jsdocImport.configFile": {
+                    "type": "string",
+                    "default": "",
+                    "description": "Path to the preferred jsconfig.json or tsconfig.json. Leave empty for auto-detect."
+                },
+                "jsdocImport.autoConvertInlineImports": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Automatically convert basic inline import(...) references into @import blocks as you type them."
+                },
+                "jsdocImport.exclude": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "default": [
+                        "**/node_modules/**",
+                        "**/dist/**",
+                        "**/out/**"
+                    ],
+                    "description": "Glob patterns to exclude from type scanning."
+                },
+                "jsdocImport.preferAbsolute": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Prefer alias-based paths (from jsconfig/tsconfig paths) over relative paths."
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile && npm run lint",
+        "lint": "eslint src",
+        "test": "vscode-test"
+    },
+    "dependencies": {
+        "typescript": "^5.9.2"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.107.0",
+        "@types/mocha": "^10.0.10",
+        "@types/node": "22.x",
+        "@typescript-eslint/eslint-plugin": "^8.39.0",
+        "@typescript-eslint/parser": "^8.39.0",
+        "eslint": "^9.32.0",
+        "@vscode/test-cli": "^0.0.11",
+        "@vscode/test-electron": "^2.5.2"
+    }
+}
