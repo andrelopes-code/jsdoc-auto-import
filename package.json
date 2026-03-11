@@ -2,7 +2,11 @@
     "name": "jsdoc-auto-import",
     "displayName": "JSDoc Auto Import",
     "description": "Automates JSDoc @import type management using modern TS 5.5+ syntax",
+    "license": "MIT",
     "version": "0.0.1",
+    "repository": {
+        "url": "https://github.com/andrelopes-code/jsdoc-auto-import"
+    },
     "engines": {
         "vscode": "^1.107.0"
     },
